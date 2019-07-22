@@ -1,1 +1,1 @@
-web: gunicorn rollbar_integration.py
+web: gunicorn rollbar_integration
