@@ -23,7 +23,7 @@ def post_error():
     twilio_payload = json.loads(request.form['Payload'])
     msg = twilio_payload.get('error_code')
     if twilio_payload['more_info'].get('msg'):
-        msg += f' - {twilio_payload["more_info"]["msg"] }'
+        msg += f' - {twilio_payload["more_info"]["msg"]}'
     rollbar.report_message(msg, (request.form['Level'].lower()), request.form)
     return '', 204
 
