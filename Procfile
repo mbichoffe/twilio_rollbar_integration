@@ -1,1 +1,1 @@
-web: gunicorn rollbar_integration
+web: gunicorn rollbar_integration_app
