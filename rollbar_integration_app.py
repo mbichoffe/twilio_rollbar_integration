@@ -21,12 +21,15 @@ app = Flask(__name__)
 @app.route('/rollbar', methods=['POST'])
 def post_error():
     twilio_payload = json.loads(request.form['Payload'])
-    print(twilio_payload)
+    print(request.form)
     msg = twilio_payload.get('error_code')
     if twilio_payload.get('more_info'):
         if twilio_payload['more_info'].get('msg'):
             msg += f' - {twilio_payload["more_info"]["msg"]}'
-    rollbar.report_message(msg, (request.form['Level'].lower()), request.form)
+    try:
+        rollbar.report_message(msg, (request.form['Level'].lower()), request.form)
+    except Exception as e:
+        print(e)
     return '', 204
 
 
