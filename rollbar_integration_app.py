@@ -3,17 +3,14 @@ import os
 import rollbar
 from flask import Flask
 from flask import (
-    render_template,
     request,
-    url_for,
-    session
 )
 import json
 
 
 load_dotenv(find_dotenv())
 
-rollbar.init(os.getenv('ROLLBAR_POST_SERVER_ITEM'))
+rollbar.init('21771aacaf074bf483d14fff4e9b321a')
 # The session object makes use of a secret key.
 app = Flask(__name__)
 
