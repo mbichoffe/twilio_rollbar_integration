@@ -2,10 +2,16 @@ from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
 from slack import WebClient
 import os
+import json
 
 load_dotenv(find_dotenv())
 slack_client = WebClient(token=os.getenv('SLACK_BOT_TOKEN'))
 
+dbFile = './FlexErrors.json'
+with open(dbFile, 'rU') as f:
+    read_data = f.read()
+    flex_errors = json.loads(read_data)
+    f.close()
 
 def post_to_slack(request, msg, error_code):
     level = request.form.get('Level')
