@@ -19,6 +19,7 @@ def post_to_slack(request, msg, error_code):
     sid = request.form['Sid']
     datetimeObj = datetime.strptime(request.form["Timestamp"], '%Y-%m-%dT%H:%M:%S.%fZ')
     date = datetimeObj.strftime("%a, %d %b %Y %H:%M:%S")
+    color = "warning" if level == "WARNING" else "danger"
     try:
         slack_client.chat_postMessage(
             channel="#flex-prod",
