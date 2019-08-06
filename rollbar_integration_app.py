@@ -23,6 +23,7 @@ with open(dbFile, 'rU') as f:
 
 
 @app.route('/twiliodebugevents', methods=['POST'])
+@validate_twilio_request
 def post_event():
     payload = json.loads(request.form['Payload'])
     msg = error_code = str(payload.get('error_code'))
